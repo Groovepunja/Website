@@ -1,0 +1,42 @@
+/* styles.css */
+
+/* General body styles */
+body {
+    font-family: Arial, sans-serif; /* Set a readable font */
+    font-size: 12pt; /* Set font size to 12 points */
+    margin: 0; /* Remove default margin */
+    padding: 15px; /* Add padding around the body */
+}
+
+/* Paragraph styles */
+p {
+    margin-bottom: 9pt; /* Add vertical spacing (75% of font size) */
+    text-indent: 0.5in; /* First-line indent */
+}
+
+/* Headings styles */
+h1, h2 {
+    font-family: Jokerman, sans-serif; /* Use Jokerman for headings */
+}
+
+/* Additional styles for headers */
+h1 {
+    font-size: 24pt; /* Example size for h1 */
+}
+
+h2 {
+    font-size: 18pt; /* Example size for h2 */
+}
+
+/* Table styles */
+th {
+    font-family: Arial, sans-serif; /* Ensure th uses a readable font */
+    text-align: left;
+    vertical-align: top;
+    background-color: #f2f2f2;
+}
+
+td {
+    text-align: left;
+    vertical-align: top;
+}
