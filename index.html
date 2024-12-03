@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dokkan Battle Wiki</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            background-color: gray;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: grid;
+            grid-template-areas:
+                'header header'
+                'menu main'
+                'footer footer';
+            grid-template-columns: 1fr 3fr;
+            grid-template-rows: auto 1fr auto;
+            gap: 20px;
+            width: 80%;
+            margin: auto;
+        }
+        header {
+            grid-area: header;
+            border: 20px solid darkgray;
+            padding: 20px;
+            height: 1000px;
+            position: relative;
+        }
+        aside {
+            grid-area: menu;
+            background-color: lightgray;
+            padding: 5px;
+            height: 300px;
+        }
+        aside nav ul li {
+            border: 2px solid darkgray; /* Individual border for each item */
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 10px; /* Added margin for spacing between items */
+        }
+        aside nav ul li a {
+            display: block;
+            padding: 10px;
+            font-weight: bold;
+            color: black;
+            text-decoration: none;
+        }
+        aside nav ul li a:hover {
+            background-color: lightgray;
+        }
+
+        main {
+            grid-area: main;
+            padding: 15px;
+        }
+        footer {
+            grid-area: footer;
+            background-color: darkgray;
+            padding: 10px;
+            text-align: center;
+        }
+        hr {
+            border: none;
+            height: 3px;
+            background-color: darkgray;
+            margin: 0;
+        }
+        h1 {
+            font-size: 3em;
+            color: #33ff88;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .character-section {
+            margin-bottom: 40px;
+            border: 2px solid #ddd;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .character-section h3 {
+            margin-top: 0;
+        }
+        .character-section img {
+            float: left;
+            margin-right: 15px;
+        }
+        .character-section p {
+            font-size: 1.5em;
+            color: #33ffb1;
+            font-weight: bold;
+            text-align: left;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            margin: 10px 0;
+            clear: both;
+        }
+        .video-container {
+            margin-bottom: 20px;
+            text-align: center;
+            border: 3px solid darkgray;
+            border-radius: 10px;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+        .video-container iframe {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Popup menu styles */
+        .popup-menu {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            z-index: 1000;
+        }
+        .popup-menu a {
+            color: white;
+            font-size: 20px;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .popup-menu a:hover {
+            text-decoration: underline;
+        }
+
+        /* Media Query for Mobile Responsiveness */
+        @media screen and (max-width: 768px) {
+            .container {
+                grid-template-areas:
+                    'header'
+                    'main'
+                    'menu'
+                    'footer';
+                grid-template-columns: 1fr;
+                gap: 10px;
+                width: 100%;
+            }
+
+            header {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .character-section img {
+                float: none;
+                display: block;
+                margin: 0 auto;
+                width: 100%;
+            }
+
+            .popup-menu a {
+                font-size: 18px;
+                display: block;
+                margin: 10px 0;
+            }
+
+            aside {
+                height: auto;
+                padding: 10px;
+            }
+
+            footer {
+                padding: 15px;
+            }
+
+            /* Toggle button adjustment */
+            .toggle-button {
+                font-size: 18px;
+                padding: 10px 20px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            h1 {
+                font-size: 1.5em;
+            }
+            .popup-menu a {
+                font-size: 16px;
+            }
+            .character-section p {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1 align="center"><strong>Dokkan Battle Wiki</strong></h1>
+            <hr>
+            <img src="Dokkanlogo2.jpg" alt="Home Page Logo" width="1400" height="900" style="float: right; margin-left: 20px;">
+        </header>
+    
+        <aside>
+            <nav>
+                <ul>
+                    <li><a href="#super">Super Characters</a></li>
+                    <li><a href="#extreme">Extreme Characters</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#logVisit" onclick="showVisitorForm()">Log Visit</a></li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <div class="toggle-container">
+            <button class="toggle-button" onclick="toggleMenu()">Toggle Menu</button>
+        </div>
+
+        <div class="popup-menu" id="popupMenu">
+            <a href="#1">1</a>
+            <a href="#2">2</a>
+        </div>
+
+        <section id="visitorFormSection" style="display: none;">
+            <h2>Visitor Form</h2>
+            <form id="visitorForm" novalidate>
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="firstName"><br><br>
+                
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lastName"><br><br>
+                
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address"><br><br>
+                
+                <label for="city">City:</label>
+                <input type="text" id="city" name="city"><br><br>
+                
+                <label for="state">State:</label>
+                <input type="text" id="state" name="state"><br><br>
+                
+                <label for="zip">Zip:</label>
+                <input type="text" id="zip" name="zip"><br><br>
+                
+                <label for="cellPhone">Cell Phone:</label>
+                <input type="text" id="cellPhone" name="cellPhone"><br><br>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email"><br><br>
+                
+                <p>How did you find my page?</p>
+                <input type="checkbox" id="google" name="source" value="Google">
+                <label for="google">Google</label><br>
+                <input type="checkbox" id="socialMedia" name="source" value="Social Media">
+                <label for="socialMedia">Social Media</label><br>
+                <input type="checkbox" id="friend" name="source" value="Friend">
+                <label for="friend">Friend</label><br><br>
+                
+                <label for="comments">Comments:</label><br>
+                <textarea id="comments" name="comments"></textarea><br><br>
+                
+                <button type="submit">Submit</button>
+            </form>
+            <div id="thankYouMessage" style="display: none;">
+                <p>Thank you for visiting and providing your information!</p>
+            </div>
+        </section>
+        
+
+            <section class="featured-units">
+                <h2 align="left"><strong>Featured Units:</strong></h2>
+        
+        </div>
+
+        <script src="js/main.js"></script>
+    <script src="js/validation.js"></script>
+    <script src="js/page.js"></script>
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('popupMenu');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        }
+        
+        function showVisitorForm() {
+            const visitorFormSection = document.getElementById('visitorFormSection');
+            visitorFormSection.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
+
+
+        
+        <main>
+            <!-- Character Sections -->
+            <div class="character-section" id="Ultra Instinct Goku">
+                <h3>Ultra Instinct Goku</h3>
+                <a href="Ultra_Instinct_Goku_details.html">
+                    <img src="Ultra_Instinct_Goku.png" alt="Ultra Instinct Goku" width="150">
+                </a>
+                <p><strong>Ultra Instinct Goku is an Agility type character whose special ability is evasion in the most desperate of situations!</strong></p>
+            </div>
+    
+            <div class="character-section" id="Super Saiyan Broly">
+                <h3>Super Saiyan Broly</h3>
+                <a href="Super_Saiyan_Broly_details.html">
+                    <img src="Super_Saiyan_Broly.png" alt="Super Saiyan Broly" width="150">
+                </a>
+                <p><strong>Super Saiyan Broly is a physical type character who's completely offensive based, able to take the opponent down all by himself!</strong></p>
+            </div>
+    
+            <div class="character-section" id="Super Saiyan Blue Evolution Vegeta">
+                <h3>Super Saiyan Evolution Vegeta</h3>
+                <a href="super_saiyan_blue_evolution_vegeta_details.html">
+                    <img src="super_saiyan_blue_evolution_vegeta.png" alt="Super Saiyan Blue Evolution Vegeta" width="150">
+                </a>
+                <p><strong>Super Saiyan Blue Evolution Vegeta is an intelligence type character who gets stronger the longer the battle goes on!</strong></p>
+            </div>
+    
+            <div class="character-section" id="Beast Gohan">
+                <h3>Beast Gohan</h3>
+                <a href="Beast_Gohan_details.html">
+                    <img src="Beast_Gohan.png" alt="Beast Gohan" width="150">
+                </a>
+                <p><strong>Beast Gohan is a strength type character who excels in defense and will lead your team to victory!</strong></p>
+            </div>
+        </main>
+        <script>
+            function toggleMenu() {
+                var menu = document.getElementById('popupMenu');
+                // Toggle visibility of the popup menu
+                if (menu.style.display === 'block') {
+                    menu.style.display = 'none';
+                } else {
+                    menu.style.display = 'block';
+                }
+            }
+        </script>
+
+            <footer>
+                <p>Footer Content</p>
+            </footer>
+        
+            
+            <!-- Embedded YouTube Video -->
+            <div class="video
+            <script src="js/main.js"></script>
+    <script src="js/validation.js"></script>
+    <script src="js/page.js"></script>
+</body>
+</html>
+            
+
+        

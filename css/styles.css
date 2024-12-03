@@ -1,0 +1,382 @@
+/* 
+changed color scheme
+added toggle button
+added toggle button coloration
+changed position of images and borders
+changed main logo image
+made each image besides logo image into hyperlink
+changed text coloration
+ */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+/* Default Light Theme */
+.light-theme {
+    background-color: #f0f0f0;
+    color: black;
+}
+
+.dark-theme {
+    background-color: #333;
+    color: white;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 20px;
+    background-color: #fff;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+    flex: 1 1 100%;
+    font-size: 1.2em;
+    color: #333;
+}
+
+form input[type="text"], 
+form input[type="email"], 
+form input[type="number"], 
+form textarea {
+    flex: 1 1 100%;
+    padding: 10px;
+    font-size: 1em;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+}
+
+form input:focus, 
+form textarea:focus {
+    border-color: #33ff88;
+    outline: none;
+}
+
+form .error {
+    border-color: red !important;
+    color: red;
+}
+
+form .valid {
+    border-color: green !important;
+}
+
+form .error-message {
+    color: red;
+    font-size: 0.9em;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: white;
+    background-color: #33ff88;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #28c76f;
+}
+
+/* Hidden Sections */
+.hidden-section {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease, height 0.5s ease;
+    overflow: hidden;
+}
+
+.hidden-section.active {
+    display: block;
+    opacity: 1;
+}
+
+/* Thank You Message */
+.thank-you-message {
+    text-align: center;
+    font-size: 1.5em;
+    color: #33ff88;
+    font-weight: bold;
+    padding: 20px;
+    border: 2px solid #33ff88;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.container {
+    display: grid;
+    grid-template-areas:
+        'header header'
+        'menu main'
+        'footer footer';
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: auto 1fr auto;
+    gap: 20px;
+    width: 80%;
+    margin: auto;
+}
+
+@media screen and (max-width: 768px) {
+    form label, form input, form textarea, button {
+        flex: 1 1 100%;
+    }
+
+    .container {
+        grid-template-areas:
+            'header'
+            'main'
+            'menu'
+            'footer';
+        grid-template-columns: 1fr;
+        gap: 10px;
+        width: 100%;
+    }
+
+    header {
+        padding: 15px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    form {
+        padding: 15px;
+        gap: 10px;
+    }
+
+    form label {
+        font-size: 1em;
+    }
+
+    button {
+        font-size: 0.9em;
+    }
+
+    .thank-you-message {
+        font-size: 1.2em;
+    }
+}
+
+header {
+    grid-area: header;
+    border: 20px solid darkgray;
+    padding: 20px;
+    height: 1000px;
+    position: relative;
+    background-color: #fff;
+}
+
+header h1 {
+    font-size: 3em;
+    color: #33ff88;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+aside {
+    grid-area: menu;
+    background-color: lightgray;
+    padding: 5px;
+    height: 300px;
+}
+
+aside nav ul li {
+    border: 2px solid darkgray;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+aside nav ul li a {
+    display: block;
+    padding: 10px;
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+}
+
+aside nav ul li a:hover {
+    background-color: lightgray;
+}
+
+main {
+    grid-area: main;
+    padding: 15px;
+}
+
+footer {
+    grid-area: footer;
+    background-color: darkgray;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Popup Menu Styles */
+.popup-menu {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    z-index: 1000;
+}
+
+.popup-menu a {
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.popup-menu a:hover {
+    text-decoration: underline;
+}
+
+.popup-menu.active {
+    display: block;
+}
+
+/* Toggle Button Styles */
+.toggle-button {
+    background-color: white;
+    color: black;
+    font-size: 20px;
+    padding: 15px 30px;
+    border: 2px solid darkgray;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+hr {
+    border: none;
+    height: 3px;
+    background-color: darkgray;
+    margin: 0;
+}
+
+h1 {
+    font-size: 3em;
+    color: #33ff88;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.character-section {
+    margin-bottom: 40px;
+    border: 2px solid #ddd;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.character-section h3 {
+    margin-top: 0;
+}
+
+.character-section img {
+    float: left;
+    margin-right: 15px;
+}
+
+.character-section p {
+    font-size: 1.5em;
+    color: #33ffb1;
+    font-weight: bold;
+    text-align: left;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    margin: 10px 0;
+    clear: both;
+}
+
+.video-container {
+    margin-bottom: 20px;
+    text-align: center;
+    border: 3px solid darkgray;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.video-container iframe {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+    .container {
+        grid-template-areas:
+            'header'
+            'main'
+            'menu'
+            'footer';
+        grid-template-columns: 1fr;
+        gap: 10px;
+        width: 100%;
+    }
+
+    header {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    .character-section img {
+        float: none;
+        display: block;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .popup-menu a {
+        font-size: 18px;
+        display: block;
+        margin: 10px 0;
+    }
+
+    aside {
+        height: auto;
+        padding: 10px;
+    }
+
+    footer {
+        padding: 15px;
+    }
+}
+
+/* Small screens */
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 1.5em;
+    }
+
+    .popup-menu a {
+        font-size: 16px;
+    }
+
+    .character-section p {
+        font-size: 1.2em;
+    }
+}
